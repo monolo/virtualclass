@@ -1,0 +1,16 @@
+services:
+  Shared.ConnectionManager:
+    factory:
+      class: ../../../../Contexts/Shared/infrastructure/persistence/mongo/MongoClientFactory
+      method: 'createClient'
+    arguments: ['default']
+
+  Shared.RabbitMqClient:
+    factory:
+      class: ../../../../Contexts/Shared/infrastructure/EventBus/rabbitmq/RabbitMqClientFactory
+      method: 'createClient'
+    arguments: ['default']
+
+  Shared.EventBus:
+    class: ../../../../Contexts/Shared/infrastructure/EventBus/rabbitmq/RabbitMqEventBus
+    arguments: ['@Shared.RabbitMqClient']

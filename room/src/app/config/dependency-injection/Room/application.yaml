@@ -1,0 +1,16 @@
+services:
+  Room.RoomRepository:
+    class: ../../../../Contexts/Room/infrastructure/persistence/MongoRoomRepository
+    arguments: ['@Shared.ConnectionManager']
+
+  Room.CreateRoom:
+    class: ../../../../Contexts/Room/application/CreateRoom
+    arguments: ['@Room.RoomRepository', '@Shared.EventBus']
+
+  Room.Find.Room:
+    class: ../../../../Contexts/Room/application/Find/RoomFinder
+    arguments: ['@Room.RoomRepository']
+
+  Room.Find.RoomsBy:
+    class: ../../../../Contexts/Room/application/Find/RoomsByFinder
+    arguments: ['@Room.RoomRepository']

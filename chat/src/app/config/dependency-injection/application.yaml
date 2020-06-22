@@ -1,0 +1,4 @@
+imports:
+  - { resource: ./Shared/application.yaml }
+  - { resource: ./Chat/application.yaml }
+  - { resource: ./Message/application.yaml }

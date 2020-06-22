@@ -1,0 +1,12 @@
+services:
+  Message.MessageRepository:
+    class: ../../../../Contexts/Message/infrastructure/persistence/MongoMessageRepository
+    arguments: ['@Shared.ConnectionManager']
+
+  Message.CreateMessage:
+    class: ../../../../Contexts/Message/application/CreateMessage
+    arguments: ['@Message.MessageRepository', '@Shared.EventBus']
+
+  Message.Find.MessagesBy:
+    class: ../../../../Contexts/Message/application/Find/MessagesByFinder
+    arguments: ['@Message.MessageRepository', '@Chat.ChatRepository']

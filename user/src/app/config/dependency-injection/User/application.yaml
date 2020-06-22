@@ -1,0 +1,16 @@
+services:
+  User.UserRepository:
+    class: ../../../../Contexts/User/infrastructure/persistence/MongoUserRepository
+    arguments: ['@Shared.ConnectionManager']
+
+  User.UserCreateToken:
+    class: ../../../../Contexts/User/application/UserCreateToken
+    arguments: ['@User.UserRepository']
+
+  User.Find.User:
+    class: ../../../../Contexts/User/application/Find/UserFinder
+    arguments: ['@User.UserRepository']
+
+  User.Find.UsersLessMeBy:
+    class: ../../../../Contexts/User/application/Find/UsersLessMeByFinder
+    arguments: ['@User.UserRepository']

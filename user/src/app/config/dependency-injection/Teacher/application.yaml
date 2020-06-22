@@ -1,0 +1,20 @@
+services:
+  Teacher.TeacherRepository:
+    class: ../../../../Contexts/Teacher/infrastructure/persistence/MongoTeacherRepository
+    arguments: ['@Shared.ConnectionManager']
+
+  Teacher.TeacherCreator:
+      class: ../../../../Contexts/Teacher/application/TeacherCreator
+      arguments: ['@Teacher.TeacherRepository', '@Shared.EventBus']
+
+  Teacher.TeacherRequestStudent:
+    class: ../../../../Contexts/Teacher/application/TeacherRequestStudent
+    arguments: ['@Teacher.TeacherRepository', '@Student.StudentRepository', '@Shared.EventBus']
+
+  Teacher.TeacherAcceptStudent:
+    class: ../../../../Contexts/Teacher/application/TeacherAcceptStudent
+    arguments: ['@Teacher.TeacherRepository', '@Student.StudentRepository', '@Shared.EventBus']
+
+  Teacher.TeacherRejectStudent:
+    class: ../../../../Contexts/Teacher/application/TeacherRejectStudent
+    arguments: ['@Teacher.TeacherRepository', '@Student.StudentRepository', '@Shared.EventBus']

@@ -1,0 +1,16 @@
+services:
+  Chat.ChatRepository:
+    class: ../../../../Contexts/Chat/infrastructure/persistence/MongoChatRepository
+    arguments: ['@Shared.ConnectionManager']
+
+  Chat.CreateChat:
+    class: ../../../../Contexts/Chat/application/CreateChat
+    arguments: ['@Chat.ChatRepository', '@Shared.EventBus']
+
+  Chat.Find.Chat:
+    class: ../../../../Contexts/Chat/application/Find/ChatFinder
+    arguments: ['@Chat.ChatRepository']
+
+  Chat.Find.ChatsBy:
+    class: ../../../../Contexts/Chat/application/Find/ChatsByFinder
+    arguments: ['@Chat.ChatRepository']
